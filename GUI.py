@@ -3,10 +3,10 @@ import tkinter as t
 class calculator:
     def __init__(self,masterframe):
         #variables
-        self.total=0
+        self.total=""
         #creating the screen of the calculator
         self.results=t.Label(masterframe,
-                             text=(self.total))
+                             text="0")
         self.results.configure(height=2,
                                width=20,
                                font=("", 40),
@@ -16,7 +16,8 @@ class calculator:
                           columnspan=4)
         #row 1 (clear and division functions)
         self.clear_button=t.Button(masterframe,
-                                   text="Clear")
+                                   text="Clear",
+                                   command=self.clear)
         self.clear_button.configure(height=1,
                                     width=15,
                                     font=("",40),
@@ -129,7 +130,8 @@ class calculator:
                               column=3)
         #row 5 (negative,0,decimal point, and equal buttons)
         self.negative_button = t.Button(masterframe,
-                                    text="(-)")
+                                    text="(-)",
+                                        command=self.negation)
         self.negative_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
@@ -144,7 +146,8 @@ class calculator:
         self.num0_button.grid(row=5,
                                   column=1)
         self.decimal_button = t.Button(masterframe,
-                                        text=".")
+                                        text=".",
+                                       command=self.decimal)
         self.decimal_button.configure(height=1,
                                        width=5,
                                        font=("", 40))
@@ -158,40 +161,64 @@ class calculator:
         self.equal_button.grid(row=5,
                                   column=3)
 
+    #functions of the buttons
+    def clear(self):
+        self.total=""
+        self.results.configure(text="0")
+        self.negative_button.configure(state="normal")
+        self.decimal_button.configure(state="normal")
     def zero(self):
         self.total=add(self.total,"0")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def one(self):
         self.total=add(self.total,"1")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def two(self):
         self.total=add(self.total,"2")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def three(self):
         self.total=add(self.total,"3")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def four(self):
         self.total=add(self.total,"4")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def five(self):
         self.total=add(self.total,"5")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def six(self):
         self.total=add(self.total,"6")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def seven(self):
         self.total=add(self.total,"7")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def eight(self):
         self.total=add(self.total,"8")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
     def nine(self):
         self.total=add(self.total,"9")
         self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="disabled")
+    def negation(self):
+        self.total=add(self.total,"-")
+        self.negative_button.configure(state="disabled")
+    def decimal(self):
+        self.total=add(self.total,".")
+        self.results.configure(text=str(self.total))
+        self.decimal_button.configure(state="disabled")
+        self.negative_button.configure(state="disabled")
 
 def add(start,number):
     new= str(start)+number
-    return int(new)
+    return new
 
 
 
@@ -218,4 +245,5 @@ def main():
     root=t.Tk()
     calc=calculator(root)
     root.mainloop()
+    float(str(-.6))
 main()
