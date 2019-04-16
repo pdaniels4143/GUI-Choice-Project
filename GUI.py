@@ -2,9 +2,11 @@ import tkinter as t
 
 class calculator:
     def __init__(self,masterframe):
+        #variables
+        self.total=0
         #creating the screen of the calculator
         self.results=t.Label(masterframe,
-                             text="Test")
+                             text=(self.total))
         self.results.configure(height=2,
                                width=20,
                                font=("", 40),
@@ -31,21 +33,24 @@ class calculator:
                                 column=3)
         #row 2 (numbers 7,8,9, and multiplication function)
         self.num7_button=t.Button(masterframe,
-                                  text="7")
+                                  text="7",
+                                  command=self.seven)
         self.num7_button.configure(height=1,
                                    width=5,
                                    font=("",40))
         self.num7_button.grid(row=2,
                               column=0)
         self.num8_button=t.Button(masterframe,
-                                  text="8")
+                                  text="8",
+                                  command=self.eight)
         self.num8_button.configure(height=1,
                                    width=5,
                                    font=("",40))
         self.num8_button.grid(row=2,
                               column=1)
         self.num9_button=t.Button(masterframe,
-                                  text="9")
+                                  text="9",
+                                  command=self.nine)
         self.num9_button.configure(height=1,
                                    width=5,
                                    font=("",40))
@@ -60,21 +65,24 @@ class calculator:
                                   column=3)
         #row 3 (numbers 4,5,6, and subtraction function)
         self.num4_button = t.Button(masterframe,
-                                    text="4")
+                                    text="4",
+                                    command=self.four)
         self.num4_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
         self.num4_button.grid(row=3,
                               column=0)
         self.num5_button = t.Button(masterframe,
-                                    text="5")
+                                    text="5",
+                                    command=self.five)
         self.num5_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
         self.num5_button.grid(row=3,
                               column=1)
         self.num6_button = t.Button(masterframe,
-                                    text="6")
+                                    text="6",
+                                    command=self.six)
         self.num6_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
@@ -89,21 +97,24 @@ class calculator:
                               column=3)
         #row 4 (numbers 1,2,3, and addition function)
         self.num1_button = t.Button(masterframe,
-                                    text="1")
+                                    text="1",
+                                    command=self.one)
         self.num1_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
         self.num1_button.grid(row=4,
                               column=0)
         self.num2_button = t.Button(masterframe,
-                                    text="2")
+                                    text="2",
+                                    command=self.two)
         self.num2_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
         self.num2_button.grid(row=4,
                               column=1)
         self.num3_button = t.Button(masterframe,
-                                    text="3")
+                                    text="3",
+                                    command=self.three)
         self.num3_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
@@ -125,7 +136,8 @@ class calculator:
         self.negative_button.grid(row=5,
                               column=0)
         self.num0_button = t.Button(masterframe,
-                                        text="0")
+                                        text="0",
+                                    command=self.zero)
         self.num0_button.configure(height=1,
                                        width=5,
                                        font=("", 40))
@@ -145,6 +157,41 @@ class calculator:
                                        font=("", 40))
         self.equal_button.grid(row=5,
                                   column=3)
+
+    def zero(self):
+        self.total=add(self.total,"0")
+        self.results.configure(text=str(self.total))
+    def one(self):
+        self.total=add(self.total,"1")
+        self.results.configure(text=str(self.total))
+    def two(self):
+        self.total=add(self.total,"2")
+        self.results.configure(text=str(self.total))
+    def three(self):
+        self.total=add(self.total,"3")
+        self.results.configure(text=str(self.total))
+    def four(self):
+        self.total=add(self.total,"4")
+        self.results.configure(text=str(self.total))
+    def five(self):
+        self.total=add(self.total,"5")
+        self.results.configure(text=str(self.total))
+    def six(self):
+        self.total=add(self.total,"6")
+        self.results.configure(text=str(self.total))
+    def seven(self):
+        self.total=add(self.total,"7")
+        self.results.configure(text=str(self.total))
+    def eight(self):
+        self.total=add(self.total,"8")
+        self.results.configure(text=str(self.total))
+    def nine(self):
+        self.total=add(self.total,"9")
+        self.results.configure(text=str(self.total))
+
+def add(start,number):
+    new= str(start)+number
+    return int(new)
 
 
 
@@ -171,5 +218,4 @@ def main():
     root=t.Tk()
     calc=calculator(root)
     root.mainloop()
-
 main()
