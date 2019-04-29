@@ -4,6 +4,8 @@ class calculator:
     def __init__(self,masterframe):
         #variables
         self.total=""
+        self.origin=""
+        self.math=""
         #creating the screen of the calculator
         self.results=t.Label(masterframe,
                              text="0")
@@ -26,7 +28,8 @@ class calculator:
                                column=0,
                                columnspan=3)
         self.divide_button=t.Button(masterframe,
-                                    text="÷")
+                                    text="÷",
+                                    command=self.division)
         self.divide_button.configure(height=1,
                                      width=5,
                                      font=("",40))
@@ -58,7 +61,8 @@ class calculator:
         self.num9_button.grid(row=2,
                               column=2)
         self.multiply_button=t.Button(masterframe,
-                                  text="×")
+                                  text="×",
+                                      command=self.multiplication)
         self.multiply_button.configure(height=1,
                                        width=5,
                                        font=("",40))
@@ -90,7 +94,8 @@ class calculator:
         self.num6_button.grid(row=3,
                               column=2)
         self.subtract_button = t.Button(masterframe,
-                                    text="-")
+                                    text="-",
+                                        command=self.subtraction)
         self.subtract_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
@@ -122,7 +127,8 @@ class calculator:
         self.num3_button.grid(row=4,
                               column=2)
         self.add_button = t.Button(masterframe,
-                                    text="+")
+                                    text="+",
+                                   command=self.addition)
         self.add_button.configure(height=1,
                                    width=5,
                                    font=("", 40))
@@ -154,67 +160,138 @@ class calculator:
         self.decimal_button.grid(row=5,
                                   column=2)
         self.equal_button = t.Button(masterframe,
-                                        text="=")
+                                        text="=",
+                                     command=self.calculate)
         self.equal_button.configure(height=1,
                                        width=5,
-                                       font=("", 40))
+                                       font=("", 40),
+                                    state="disabled")
         self.equal_button.grid(row=5,
                                   column=3)
 
     #functions of the buttons
     def clear(self):
         self.total=""
+        self.origin=""
+        self.math=""
         self.results.configure(text="0")
         self.negative_button.configure(state="normal")
         self.decimal_button.configure(state="normal")
+        self.add_button.configure(state="normal")
+        self.subtract_button.configure(state="normal")
+        self.multiply_button.configure(state="normal")
+        self.divide_button.configure(state="normal")
+        self.equal_button.configure(state="disabled")
     def zero(self):
         self.total=add(self.total,"0")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def one(self):
         self.total=add(self.total,"1")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def two(self):
         self.total=add(self.total,"2")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def three(self):
         self.total=add(self.total,"3")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def four(self):
         self.total=add(self.total,"4")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def five(self):
         self.total=add(self.total,"5")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def six(self):
         self.total=add(self.total,"6")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def seven(self):
         self.total=add(self.total,"7")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def eight(self):
         self.total=add(self.total,"8")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def nine(self):
         self.total=add(self.total,"9")
         self.results.configure(text=str(self.total))
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def negation(self):
         self.total=add(self.total,"-")
         self.negative_button.configure(state="disabled")
+        self.equal_button.configure(state="normal")
     def decimal(self):
         self.total=add(self.total,".")
         self.results.configure(text=str(self.total))
         self.decimal_button.configure(state="disabled")
         self.negative_button.configure(state="disabled")
+    def addition(self):
+        self.origin=self.total
+        self.total=""
+        self.math="add"
+        self.add_button.configure(state="disabled")
+        self.subtract_button.configure(state="disabled")
+        self.multiply_button.configure(state="disabled")
+        self.divide_button.configure(state="disabled")
+    def subtraction(self):
+        self.origin=self.total
+        self.total=""
+        self.math="subtract"
+        self.add_button.configure(state="disabled")
+        self.subtract_button.configure(state="disabled")
+        self.multiply_button.configure(state="disabled")
+        self.divide_button.configure(state="disabled")
+    def multiplication(self):
+        self.origin=self.total
+        self.total=""
+        self.math="multiply"
+        self.add_button.configure(state="disabled")
+        self.subtract_button.configure(state="disabled")
+        self.multiply_button.configure(state="disabled")
+        self.divide_button.configure(state="disabled")
+    def division(self):
+        self.origin=self.total
+        self.total=""
+        self.math="divide"
+        self.add_button.configure(state="disabled")
+        self.subtract_button.configure(state="disabled")
+        self.multiply_button.configure(state="disabled")
+        self.divide_button.configure(state="disabled")
+    def calculate(self):
+        if self.math=="add":
+            self.total=float(self.origin)+float(self.total)
+            self.results.configure(text=str(self.total))
+        elif self.math=="subtract":
+            self.total = float(self.origin) - float(self.total)
+            self.results.configure(text=str(self.total))
+        elif self.math=="multiply":
+            self.total = float(self.origin) * float(self.total)
+            self.results.configure(text=str(self.total))
+        elif self.math=="divide":
+            self.total = float(self.origin) / float(self.total)
+            self.results.configure(text=str(self.total))
+        self.negative_button.configure(state="normal")
+        self.decimal_button.configure(state="normal")
+        self.add_button.configure(state="normal")
+        self.subtract_button.configure(state="normal")
+        self.multiply_button.configure(state="normal")
+        self.divide_button.configure(state="normal")
 
 def add(start,number):
     new= str(start)+number
