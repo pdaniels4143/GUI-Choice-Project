@@ -249,6 +249,7 @@ class calculator:
         self.subtract_button.configure(state="disabled")
         self.multiply_button.configure(state="disabled")
         self.divide_button.configure(state="disabled")
+        self.decimal_button.configure(state="normal")
     def subtraction(self):
         self.origin=self.total
         self.total=""
@@ -257,6 +258,7 @@ class calculator:
         self.subtract_button.configure(state="disabled")
         self.multiply_button.configure(state="disabled")
         self.divide_button.configure(state="disabled")
+        self.decimal_button.configure(state="normal")
     def multiplication(self):
         self.origin=self.total
         self.total=""
@@ -265,6 +267,7 @@ class calculator:
         self.subtract_button.configure(state="disabled")
         self.multiply_button.configure(state="disabled")
         self.divide_button.configure(state="disabled")
+        self.decimal_button.configure(state="normal")
     def division(self):
         self.origin=self.total
         self.total=""
@@ -273,18 +276,23 @@ class calculator:
         self.subtract_button.configure(state="disabled")
         self.multiply_button.configure(state="disabled")
         self.divide_button.configure(state="disabled")
+        self.decimal_button.configure(state="normal")
     def calculate(self):
         if self.math=="add":
             self.total=float(self.origin)+float(self.total)
+            self.total = round(self.total, 5)
             self.results.configure(text=str(self.total))
         elif self.math=="subtract":
             self.total = float(self.origin) - float(self.total)
+            self.total=round(self.total,5)
             self.results.configure(text=str(self.total))
         elif self.math=="multiply":
             self.total = float(self.origin) * float(self.total)
+            self.total = round(self.total, 5)
             self.results.configure(text=str(self.total))
         elif self.math=="divide":
             self.total = float(self.origin) / float(self.total)
+            self.total = round(self.total, 5)
             self.results.configure(text=str(self.total))
         self.negative_button.configure(state="normal")
         self.decimal_button.configure(state="normal")
