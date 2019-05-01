@@ -1,7 +1,7 @@
 import tkinter as t
 
 #version set to add perenthesis use and order of operations.
-#method: try eval() function to convert from string to python code that can be computed with.
+#method: add exception code for syntax errors and division by zero
 
 class calculator:
     def __init__(self,masterframe):
