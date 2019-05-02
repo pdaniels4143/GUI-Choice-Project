@@ -1,7 +1,6 @@
 import tkinter as t
 
-#version set to add perenthesis use and order of operations.
-#method: add exception code for syntax errors and division by zero
+#calculator version set to add perenthesis use, order of operations, and some error handling.
 
 class calculator:
     def __init__(self,masterframe):
@@ -169,6 +168,27 @@ class calculator:
                                        font=("", 40))
         self.equal_button.grid(row=5,
                                   column=3)
+        #graphic design is my passion /s
+        self.leftcap_button=t.Button(masterframe,
+                                     text="(",
+                                     command=self.leftcap)
+        self.leftcap_button.configure(height=1,
+                                      width=10,
+                                      font=("", 40),
+                                      padx=6)
+        self.leftcap_button.grid(row=6,
+                                 column=0,
+                                 columnspan=2)
+        self.rightcap_button = t.Button(masterframe,
+                                       text=")",
+                                        command=self.rightcap)
+        self.rightcap_button.configure(height=1,
+                                      width=10,
+                                      font=("", 40),
+                                       padx=6)
+        self.rightcap_button.grid(row=6,
+                                 column=2,
+                                 columnspan=2)
 
     #functions of the buttons
     def clear(self):
@@ -272,8 +292,27 @@ class calculator:
         print(self.total)
         print(self.origin)
     def calculate(self):
-        self.total=round(eval(self.origin),5)
-        self.origin=self.total
+        try:
+            self.total=round(eval(self.origin),5)
+            self.origin = self.total
+            self.results.configure(text=str(self.total))
+        except ZeroDivisionError:
+            self.results.configure(text="Cannot divide by zero")
+        except SyntaxError:
+            self.results.configure(text="Syntax error")
+        except TypeError:
+            self.results.configure(text="Syntax error")
+        print(self.total)
+        print(self.origin)
+    def leftcap(self):
+        self.total=add(self.total,"(")
+        self.origin = add(self.origin, "(")
+        self.results.configure(text=str(self.total))
+        print(self.total)
+        print(self.origin)
+    def rightcap(self):
+        self.total=add(self.total,")")
+        self.origin = add(self.origin, ")")
         self.results.configure(text=str(self.total))
         print(self.total)
         print(self.origin)

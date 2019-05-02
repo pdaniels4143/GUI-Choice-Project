@@ -1,5 +1,7 @@
 import tkinter as t
 
+#basic four function calculator
+
 class calculator:
     def __init__(self,masterframe):
         #variables
